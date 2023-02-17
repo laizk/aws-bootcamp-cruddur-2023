@@ -125,7 +125,7 @@ Screenshot:
 
 ## Homework Challenges
 
-### 1. Created an architectural diagram (to the best of my ability and with reference) the CI/CD logical pipeline in Lucid Charts
+### . Created an architectural diagram (to the best of my ability and with reference) the CI/CD logical pipeline in Lucid Charts
 
 [Lucid chart link](https://lucid.app/lucidchart/036b7207-6f33-4805-b5d8-b7144ba6e3cb/edit?viewport_loc=-446%2C-220%2C2462%2C1359%2C0_0&invitationId=inv_70da2b67-dde4-4fe9-8390-c74c389abfe1)
 
@@ -133,3 +133,11 @@ Screenshot:
 ![Alt text](assets/aws-cicd-diagram.png)
 
 Reference: [Complete CI/CD with AWS CodeCommit, AWS CodeBuild, AWS CodeDeploy, and AWS CodePipeline](https://aws.amazon.com/blogs/devops/complete-ci-cd-with-aws-codecommit-aws-codebuild-aws-codedeploy-and-aws-codepipeline/)
+
+<br>
+
+### 2. Used EventBridge to hookup Health Dashboard to SNS and send notification when there is a service health issue.
+Summary of configuration:
+
+![Alt text](assets/eventbridge-service-health-sns.png)
+<br>
