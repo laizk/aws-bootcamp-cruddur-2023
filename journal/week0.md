@@ -114,7 +114,7 @@ Screenshot:
 
 ![Alt text](assets/cruddur%20conceptual%20diagram.jpg)
 
-### 9.  Recreated Logical Architectual Diagram in Lucid Charts
+### 9.  Recreated Logical Architectural Diagram in Lucid Charts
 [Lucid chart reference](https://lucid.app/lucidchart/33b84672-6db5-4857-a377-cc9f1eb8d5f0/edit?viewport_loc=470%2C212%2C2036%2C1662%2C0_0&invitationId=inv_55e02421-1786-4a48-b8f6-db99d38de38c)
 
 Screenshot: 
@@ -142,7 +142,7 @@ Summary of configuration:
 ![Alt text](assets/eventbridge-service-health-sns.png)
 <br>
 
-### 3. Destroyed your root account credentials, Set MFA, IAM role
+### 3. Destroyed my root account credentials, Set MFA, IAM role
 - Destroyed root account credentials by deactivating access key first, then delete:
   
   - Deactivate:
