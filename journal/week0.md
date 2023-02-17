@@ -141,3 +141,19 @@ Summary of configuration:
 
 ![Alt text](assets/eventbridge-service-health-sns.png)
 <br>
+
+### 3. Destroyed your root account credentials, Set MFA, IAM role
+- Destroyed root account credentials by deactivating access key first, then delete:
+  
+  - Deactivate:
+  - ![Alt text](assets/root-access-key-deactivate.png)
+  - Delete:
+  - ![Alt text](assets/root-access-key-delete.png)
+
+- Set MFA for added layer of security for the root account
+  ![Alt text](assets/root-mfa.png)
+
+- Set IAM role to be used by IAM user or group
+  ![Alt text](assets/root-iam-role.png)
+
+
