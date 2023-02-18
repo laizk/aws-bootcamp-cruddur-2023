@@ -156,4 +156,5 @@ Summary of configuration:
 - Set IAM role to be used by IAM user or group
   ![Alt text](assets/root-iam-role.png)
 
-
+### 4. Reviewed all the questions of each pillars in the Well Architected Tool (No specialized lens)
+[Link to Report](assets/Cruddur_wellarchitected.pdf)
