@@ -166,3 +166,12 @@ I did not really opened a support ticket to request service limit, but just get 
 
 Screenshot:
 ![Alt text](assets/service-quota-increase-request.png)
+
+### 6. Researched the technical and service limits of specific services and how they could impact the technical path for technical flexibility. 
+
+I just looked for the document to include service quotas of all services. 
+[Link to the site](https://docs.aws.amazon.com/pdfs/general/latest/gr/aws-general.pdf#aws-service-information)
+
+As far as the impact on technical path for technical flexibility, I'm not really sure at the moment.  But from the top of my head, it might be, for example, in the list below for "Attachments per VPC" which has a quota of 5. If the workload requires more, we'd have to design the architecture within that limit or else we'd request for an increase in the quota and justify to AWS.
+
+![Alt text](assets/service-limit-ec2.png)
