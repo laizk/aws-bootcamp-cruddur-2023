@@ -151,7 +151,7 @@ Summary of configuration:
   - ![Alt text](assets/root-access-key-delete.png)
 
 - Set MFA for added layer of security for the root account
-  ![Alt text](assets/root-mfa.png)
+  ![Alt text](assets/iam-mfa.png)
 
 - Set IAM role to be used by IAM user or group
   ![Alt text](assets/root-iam-role.png)
