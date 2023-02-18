@@ -158,3 +158,11 @@ Summary of configuration:
 
 ### 4. Reviewed all the questions of each pillars in the Well Architected Tool (No specialized lens)
 [Link to Report](assets/Cruddur_wellarchitected.pdf)
+
+### 5. Explored on how to open a support ticket and request a service limit
+I did not really opened a support ticket to request service limit, but just get familiarized on where to navigate for this.
+
+[Link to the site](https://support.console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase)
+
+Screenshot:
+![Alt text](assets/service-quota-increase-request.png)
