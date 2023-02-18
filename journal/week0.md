@@ -143,14 +143,14 @@ Summary of configuration:
 <br>
 
 ### 3. Destroyed my root account credentials, Set MFA, IAM role
-- Destroyed root account credentials by deactivating access key first, then delete:
+- Destroyed iam admin account credentials by deactivating access key first, then delete:
   
   - Deactivate:
   - ![Alt text](assets/root-access-key-deactivate.png)
   - Delete:
   - ![Alt text](assets/root-access-key-delete.png)
 
-- Set MFA for added layer of security for the root account
+- Set MFA for added layer of security for the iam admin account
   ![Alt text](assets/iam-mfa.png)
 
 - Set IAM role to be used by IAM user or group
