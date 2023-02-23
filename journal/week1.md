@@ -252,3 +252,26 @@ Dockerhub screenshot:
 
 ![Alt text](assets/dockerhub-push-ui.png)
 
+
+### Implement a healthcheck in the V3 Docker compose file
+
+I inserted the following command in [docker-compose.yml](../docker-compose.yml) to check the health for frontend:
+
+```
+    healthcheck:
+      test: curl --fail http://localhost:3000 || exit 1
+      interval: 60s
+      retries: 5
+      start_period: 20s
+      timeout: 10s
+```
+
+Screenshot:
+
+![Alt text](assets/docker-compose-healthcheck.png)
+
+
+To check health after `compose up` is run and all services up, I inspected the frontend container:
+
+![Alt text](assets/docker-compose-inspect-health.png)
+
