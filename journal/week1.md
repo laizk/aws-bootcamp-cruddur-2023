@@ -9,7 +9,7 @@
 
 <br>
 
-### After following through the videos about "live stream", "OpenAI document", "Write Flask Backend Enpoint for Notifications" and "Write a React Page for Notifications" and referring to [Andrew Brown's week 1 instructions](https://github.com/omenking/aws-bootcamp-cruddur-2023/blob/week-1/journal/week1.md), I was able to set up run front-end and back-end containers simultaneously and linked them together through docker-compose file.  I was also able to add in the Notifications feature. The final working results are shown below screenshot:
+After following through the videos about "live stream", "OpenAI document", "Write Flask Backend Enpoint for Notifications" and "Write a React Page for Notifications" and referring to [Andrew Brown's week 1 instructions](https://github.com/omenking/aws-bootcamp-cruddur-2023/blob/week-1/journal/week1.md), I was able to set up run front-end and back-end containers simultaneously and linked them together through docker-compose file.  I was also able to add in the Notifications feature. The final working results are shown below screenshot:
 
 <br>
 
@@ -65,7 +65,7 @@ Below is a summary of steps I took to achieve the above final results:
     2.  Backend:
         1.  [notifications_activities.py](../backend-flask/services/notifications_activities.py) - to facilitate the logic for notifications activities at the backend including the data
         2.  [app.py](../backend-flask/app.py) - to add the notifications_activities service into the application
-        3.  [openapi-3.0.yml)](../backend-flask/openapi-3.0.yml) - to add the notifications_activities service into the API service
+        3.  [openapi-3.0.yml](../backend-flask/openapi-3.0.yml) - to add the notifications_activities service into the API service
 
 12. Changes were reflected in the applications.
 
