@@ -180,3 +180,55 @@ Screenshots:
 
 ![Alt text](assets/gitpod-postgres-cli.png)
 ![Alt text](assets/gitpod-postgres-psql.png)
+
+<br>
+
+## Homework Challenges
+
+### Learned how to install Docker on my localmachine and get the same containers running outside of Gitpod / Codespaces
+I installed Docker Desktop for Mac
+![Alt text](assets/docker-local-install.png)
+
+I ran the same Dockerfile as was with the live stream
+![Alt text](assets/docker-local-image.png)
+
+c. However, I noticed a difference. In local, only 5 layers were processed until "COPY . ." command. The rest did not show up.
+![Alt text](assets/docker-build-local.png)
+
+d. I was able to successfully deploy backend-flask app locally, using the command:
+
+```
+docker run --rm -p 4567:4567 -it -e FRONTEND_URL='*' -e BACKEND_URL='*' backend-flask 
+```
+
+Screenshot:
+![Alt text](assets/docker-deploy-local.png)
+
+
+In the attempt to deploy the app locally, I created a :[docker-compose-local.yml](../docker-compose-local.yml)
+
+I experienced an issue with using https for both FRONTEND_URL and BACKEND_URL. I search workaround in the internet and the one that worked for me is to change https to http. Not secure but anyway, this is local.
+
+![Alt text](assets/docker-run-frontend-local-error.png)
+
+
+After the https -> http fix, I was able to successfully deploy frontend app using docker-compose.yml file from localhost and implemented the notifications changes locally:
+
+![Alt text](assets/frontend-notifications-local.png)
+
+I also was able to successfully setup dynamodb and postgres:
+
+DynamoDB:
+
+![Alt text](assets/dynamodb-local.png)
+
+
+Postgres:
+
+![Alt text](assets/postgres-local.png)
+
+
+*** However, there were pre-requisites I needed to do:
+1. For Dynamodb tests, I installed AWS cli to my local machine by following the instructions in this [link](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html).
+2. For Postgres, I installed postgres to my local machine by following the instructions in this [link](https://www.timescale.com/blog/how-to-install-psql-on-mac-ubuntu-debian-windows/)
+
