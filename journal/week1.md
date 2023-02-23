@@ -65,7 +65,7 @@ Below is a summary of steps I took to achieve the above final results:
     2.  Backend:
         1.  [notifications_activities.py](../backend-flask/services/notifications_activities.py) - to facilitate the logic for notifications activities at the backend including the data
         2.  [app.py](../backend-flask/app.py) - to add the notifications_activities service into the application
-        3.  [openapi-3.0.yml](../backend-flask/openapi-3.0.yml) - to add the notifications_activities service into the API service
+        3.  [openapi-3.0.yml](../backend-flask/openapi-3.0.yml) - to add the notifications_activities service into the API service. At this point, I learned more about [OpenAPI](https://swagger.io/specification/#oas-components).
 
 12. Changes were reflected in the applications.
 
@@ -231,4 +231,24 @@ Postgres:
 *** However, there were pre-requisites I needed to do:
 1. For Dynamodb tests, I installed AWS cli to my local machine by following the instructions in this [link](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html).
 2. For Postgres, I installed postgres to my local machine by following the instructions in this [link](https://www.timescale.com/blog/how-to-install-psql-on-mac-ubuntu-debian-windows/)
+
+
+<br>
+
+### 2. Pushed and tagged a image to DockerHub (they have a free tier)
+
+I used the following commands to push image to DockerHub:
+
+```
+docker tag backend-flask t0pz/aws-bootcamp-cruddur-2023-backend_flask:v1.0.0
+docker push t0pz/aws-bootcamp-cruddur-2023-backend_flask:v1.0.0
+```
+
+CLI terminal screenshot:
+
+![Alt text](assets/dockerhub-push-cli.png)
+
+Dockerhub screenshot:
+
+![Alt text](assets/dockerhub-push-ui.png)
 
