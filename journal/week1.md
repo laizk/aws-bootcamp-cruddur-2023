@@ -275,3 +275,139 @@ To check health after `compose up` is run and all services up, I inspected the f
 
 ![Alt text](assets/docker-compose-inspect-health.png)
 
+<br>
+
+### Launch an EC2 instance that has docker installed, and pull a container to demonstrate you can run your own docker processes. 
+
+I tried to use just CLI for this challenge. The steps I did are:
+1. Create the EC2 instance using CLI with user data to install
+   1. Pre-requisites
+      1. Security group ID (as shown below image)
+         1. VPC ID [vpc-08f8bfea0b9921e41] - for the security group. 
+         2. One Subnet ID [subnet-0880d493944aadd77] - to launch ec2 instance
+
+            ![Alt text](assets/challenge-ec2-vpc-subnet.png)
+    
+      2. AMI Id [ami-0dfcb1ef8550277af]
+   
+            ![Alt text](assets/challenge-ec2-ami.png)
+
+
+      3. Security Group ID [sg-02212de69fc7a47fd] to attach to ec2 instance. I created a security group using the VPC ID above:
+
+        ```
+            aws ec2 create-security-group \
+                --group-name ec2-docker-sg \
+                --description "AWS ec2 CLI SG for docker demo" \
+                --tag-specifications 'ResourceType=security-group,Tags=[{Key=Name,Value=ec2-docker-sg}]' \
+                --vpc-id "vpc-08f8bfea0b9921e41"
+        ```
+
+      4. Add inbound firewall rules to the security group. I added 2 for SSH and for HTTP access.
+   
+        ```
+            aws ec2 authorize-security-group-ingress \
+                --group-id "sg-02212de69fc7a47fd" \
+                --protocol tcp \
+                --port 22 \
+                --cidr "0.0.0.0/0" 
+        ```
+
+        ```
+            aws ec2 authorize-security-group-ingress \
+                --group-id "sg-02212de69fc7a47fd" \
+                --protocol tcp \
+                --port 80 \
+                --cidr "0.0.0.0/0" 
+        ```
+
+      5. Create SSH Key Pair [demo-key]
+        
+        ```
+            aws ec2 create-key-pair --key-name  wp-key-ec2-docker \
+            --query 'KeyMaterial' --output text > ~/.ssh/wp-key-ec2-docker.pem
+        ```
+
+      6. Finally, create the EC2 instance. I created a [user data scripts](scripts/user_data.sh) to automatically install docker into the EC2 instance when launched.
+   
+    ```
+        aws ec2 run-instances \
+            --image-id ami-0dfcb1ef8550277af\
+            --count 1 \
+            --instance-type t2.micro \
+            --key-name wp-key-ec2-docker \
+            --security-group-ids sg-02212de69fc7a47fd \
+            --subnet-id subnet-0880d493944aadd77 \
+            --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=server}]' \
+    --user-data file://<path to user_data.sh>
+    ```
+
+<br>
+
+2. Access the EC2 instance and pull image, and perform some docker commands
+
+    1. TO connect to the EC2 instance via SSH client, I followed steps #2, #3 and the example command in the screenshot below:
+
+        ![Alt text](assets/challenge-connect-to-instance.png)
+
+
+        For #2, the location of the PEM file is the one indicated when creating SSH Key Pair.
+
+        To ensure key is not publicly viewable
+        ```
+            chmod 400 wp-key-ec2-docker.pem
+        ```
+
+        Connect via SSH 
+        ```
+            ssh -i "wp-key-ec2-docker.pem" ec2-user@ec2-44-204-82-218.compute-1.amazonaws.com
+        ```
+
+        Screenshot of successful access and successful installation of docker:
+
+        ![Alt text](assets/challenge-ec2-connect.png)
+
+    2. I pulled a sample public docker image
+
+    ```
+       docker pull bbachin1/node-api
+    ```
+
+    3. I ran the container
+   
+    ```
+        docker run -d -p 80:3000 --name nodeapi bbachin1/node-api
+    ```
+
+    4. I verified it is running
+
+    ```
+        docker ps
+    ```
+
+    5. I executed into docker container
+
+    ```
+        docker exec -it nodeapi /bin/sh
+    ```
+
+    Screenshot of steps #2 to #5:
+
+    ![Alt text](assets/challenge-ec2-docker-commands.png)
+
+
+    6. From AWS management console > EC2 instance, I navigated to the running instance and grabbed the Public IPv4 address:
+
+    ![Alt text](assets/challenge-console-public-ip.png)
+
+    To check whether the app is working through the EC2 instance, I appended '/name/[any texts]' to the Public IPv4 address. In my case:
+
+    ```
+        http://44.204.82.218/name/Kristoffer%20Laiz
+    ```
+
+    Screenshot of result:
+
+    ![Alt text](assets/challenge-ec2-docker-output.png)
+
+
