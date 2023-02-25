@@ -455,7 +455,7 @@ CMD /usr/local/bin/python_flask.sh
 
 One of the best practices is to use multi-stage build which was already implemented in [backend-flask/Dockerfile](../backend-flask/Dockerfile).
 
-Another best practice is to use Label as per [docker docs](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#label). To demonstrate, I implemented it in the [backend-flask/Dockerfile](../backend-flask/Dockerfile), adding the below commands:
+Another best practice is to use Label as per [docker docs](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#label). To demonstrate, I implemented it in the [backend-flask/Dockerfile](../backend-flask/Dockerfile) to add Labels to the image, adding the below commands:
 
 ```
 LABEL vendor=CrudVendor \
@@ -464,3 +464,7 @@ LABEL vendor=CrudVendor \
       com.example.version="0.0.1-beta" \
       com.example.release-date="2023-02-25"
 ```
+
+The labels should be relevant to the component you are adding it into. These can be retrieved when an image is inspected such as below:
+
+![Alt text](assets/week1/challenge-best-practice-labels.png)
