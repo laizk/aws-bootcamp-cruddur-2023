@@ -30,7 +30,11 @@ ENV PATH=/root/.local:$PATH
 
 EXPOSE ${PORT}
 
-# CMD (Command)
-# python3 -m flask run --host=0.0.0.0 --port=4567
-# -m -> module
-CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0", "--port=4567"]
+# Copy the python_flask.sh from the repository to the image
+ADD python_flask.sh /usr/local/bin/python_flask.sh
+
+# Change file permissions to execute to allow running this script
+RUN chmod 777 /usr/local/bin/python_flask.sh
+
+# Run the script
+CMD /usr/local/bin/python_flask.sh

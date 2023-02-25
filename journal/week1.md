@@ -425,6 +425,29 @@ Sample screenshot showing the size difference of 'backend-flask' vs 'backend-fla
 
 <br>
 
+### I ran the dockerfile CMD as an external script
 
-### 1. Run the dockerfile CMD as an external script
-### 5. Research best practices of Dockerfiles and attempt to implement it in your Dockerfile
+I first created an shell script [python_flask.sh](../backend-flask/python_flask.sh). This is just a simple script that replaces the command executed in the CMD layer of [backend-flask/Dockerfile](../backend-flask/Dockerfile).
+
+```sh
+#!/bin/bash
+python3 -m flask run --host=0.0.0.0 --port=4567
+```
+
+I then modified [backend-flask/Dockerfile](../backend-flask/Dockerfile):
+
+Copy the python_flask.sh from the repository to the image
+```
+ADD python_flask.sh /usr/local/bin/python_flask.sh
+```
+
+Change file permissions to execute to allow running this script
+```
+RUN chmod 777 /usr/local/bin/python_flask.sh
+```
+
+Run the script
+```
+CMD /usr/local/bin/python_flask.sh
+```
+
