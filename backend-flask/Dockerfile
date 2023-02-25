@@ -1,6 +1,12 @@
 # Stage 1: Install dependencies
 FROM python:3.10-slim-buster AS build-base
 
+LABEL vendor=CrudVendor \
+      com.example.is-beta="true" \
+      com.example.is-production="" \
+      com.example.version="0.0.1-beta" \
+      com.example.release-date="2023-02-25"
+
 # Inside Container
 # make a new folder inside container
 WORKDIR /backend-flask
