@@ -1,12 +1,6 @@
 # Stage 1: Install dependencies
 FROM python:3.10-slim-buster AS build-base
 
-LABEL vendor=CrudVendor \
-      com.example.is-beta="true" \
-      com.example.is-production="" \
-      com.example.version="0.0.1-beta" \
-      com.example.release-date="2023-02-25"
-
 # Inside Container
 # make a new folder inside container
 WORKDIR /backend-flask
@@ -27,6 +21,14 @@ RUN pip3 install --user -r requirements.txt
 
 # Stage 2: Copy the dependencies from stage 1 and run application
 FROM python:3.10-slim-buster AS release
+
+LABEL vendor=CrudVendor \
+      com.example.is-beta="true" \
+      com.example.is-production="" \
+      com.example.version="0.0.1-beta" \
+      com.example.release-date="2023-02-25"
+
+
 WORKDIR /backend-flask
 
 COPY --from=build-base /root/.local /root/.local
