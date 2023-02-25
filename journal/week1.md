@@ -413,11 +413,11 @@ I tried to use just CLI for this challenge. The steps I did are:
 
 <br>
 
-### Use multi-stage building for a Dockerfile build
+### Used multi-stage building for a Dockerfile build
 
-I updated [label](../backend-flask/Dockerfile) for 2-stage build. Stage 1 is focused on application build, installing dependencies and setting variables. Stage 2 is then focused on just copying the files from previous stage, the built application and dependencies. This is where we expose the port and set CMD.
+I updated [backend-flask Dockerfile](../backend-flask/Dockerfile) for 2-stage build. Stage 1 is focused on application build, installing dependencies and setting variables. Stage 2 is then focused on just copying the files from previous stage, the built application and dependencies. This is where we expose the port and set CMD.
 
-One of the advantages of this is the reduced size of the final image created.  When I built the image using the multistage build Dockerfile, the size reduced from 129MB to 118MB. I guess for this particular case, the size difference is not that much because it is just a simple one. But for sure, for complex Dockerfiles, the gap will be significant.
+One of the advantages of this is the reduced size of the final image created.  When I built the image using the multistage build Dockerfile, the size reduced from 129MB to 122MB. I guess for this particular case, the size difference is not that much because it is just a simple one. But for sure, for complex Dockerfiles, the gap will be significant.
 
 Sample screenshot showing the size difference of 'backend-flask' vs 'backend-flask-multi':
 

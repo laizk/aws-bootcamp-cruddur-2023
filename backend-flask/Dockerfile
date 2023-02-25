@@ -1,14 +1,9 @@
-# Stage 1: Build the application
-FROM python:3.10-slim-buster AS builder
+# Stage 1: Install dependencies
+FROM python:3.10-slim-buster AS build-base
 
+# Inside Container
 # make a new folder inside container
 WORKDIR /backend-flask
-
-# this contains the libraries want to install to run the app
-COPY requirements.txt requirements.txt
-
-# Install the python libraries used for the app
-RUN pip3 install -r requirements.txt
 
 # Outside Container -> Inside Container
 # . means everything in the current directory
@@ -16,17 +11,22 @@ RUN pip3 install -r requirements.txt
 # 2nd . -> /backend-flask (inside container)
 COPY . .
 
-# Set Environment Variables (Env Vars)
-ENV FLASK_ENV=development
+# Outside Container -> Inside Container
+# this contains the libraries want to install to run the app
+COPY requirements.txt .
 
-# Stage 2: Create the final image
-FROM python:3.10-slim-buster
+# Inside Container
+# Install the python libraries used for the app
+RUN pip3 install --user -r requirements.txt
 
-# make a new folder inside container
+# Stage 2: Copy the dependencies from stage 1 and run application
+FROM python:3.10-slim-buster AS release
 WORKDIR /backend-flask
 
-# Copy only the built files from the previous stage
-COPY --from=builder /backend-flask .
+COPY --from=build-base /root/.local /root/.local
+COPY --from=build-base /backend-flask /backend-flask
+
+ENV PATH=/root/.local:$PATH
 
 EXPOSE ${PORT}
 
