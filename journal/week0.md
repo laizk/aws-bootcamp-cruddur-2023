@@ -18,11 +18,11 @@ Learnings from the videos:
 
 ### 2. Created an Admin User
 
-![Alt text](assets/create-admin-user.png)
+![Alt text](assets/week0/create-admin-user.png)
 <br>
 
 Also, configured MFA for this admin user:
-![Alt text](assets/admin-user-mfa.png)
+![Alt text](assets/week0/admin-user-mfa.png)
 
 
 ### 3. Used CloudShell
@@ -32,14 +32,14 @@ aws --cli-auto-prompt
 ```
 
 
-![Alt text](assets/aws-cli.png)
+![Alt text](assets/week0/aws-cli.png)
 <br> 
 
 ### 4. Generate AWS Credentials
 
 I generated AWS credentials (to access CLI) for my created admin user as per #2 above. I took note of the access key and secret access key, as well as downloaded the CSV with credentials.
 
-<br>![Alt text](assets/create-access-keys.png)
+<br>![Alt text](assets/week0/create-access-keys.png)
 
 ### 5. Installed AWS CLI
 I followed along Andrew Brown's instruction on manually installing AWS CLI in Gitpod, particularly:
@@ -61,7 +61,7 @@ I followed along Andrew Brown's instruction on manually installing AWS CLI in Gi
   ```
 
 - and I get:
-- ![Alt text](assets/aws-cli-check-user.png)
+- ![Alt text](assets/week0/aws-cli-check-user.png)
 
 Moreover, to perform the above steps every time gitpod launches, I set up the [gitpod.yml](../.gitpod.yml) file as per instruction.
 
@@ -90,10 +90,10 @@ I created a billing alarm through CLI:
     aws cloudwatch put-metric-alarm --cli-input-json file://aws/json/alarm_config.json
     ```
 Screenshot of billing alarm created:
-<br>![Alt text](assets/billing-alarm.png)
+<br>![Alt text](assets/week0/billing-alarm.png)
 
 Also, I tried creating billing alarm through console utilizing the same SNS topic created above:
-![Alt text](assets/billing-alarm-ui.png)
+![Alt text](assets/week0/billing-alarm-ui.png)
 
 ### 7. Created a Budget
 a. Using the budget definition in [budget.json](../aws/json/budget.json), I created a budget through CLI using the code below. One of my key takeaways is that every time this code is executed, a budget is created. Hence, one must be mindful to do so as having more than 2 budgets will incur costs.
@@ -106,20 +106,20 @@ aws budgets create-budget \
 ```
 
 Screenshot of budget created:
-![Alt text](assets/budget.png)
+![Alt text](assets/week0/budget.png)
 <br>
 
 ### 8. Recreated Conceptual Diagram on a Napkin
 Screenshot: 
 
-![Alt text](assets/cruddur%20conceptual%20diagram.jpg)
+![Alt text](assets/week0/cruddur%20conceptual%20diagram.jpg)
 
 ### 9.  Recreated Logical Architectural Diagram in Lucid Charts
 [Lucid chart reference](https://lucid.app/lucidchart/33b84672-6db5-4857-a377-cc9f1eb8d5f0/edit?viewport_loc=470%2C212%2C2036%2C1662%2C0_0&invitationId=inv_55e02421-1786-4a48-b8f6-db99d38de38c)
 
 Screenshot: 
 
-![Alt text](assets/cruddur%20logical%20architectural%20diagram.png)
+![Alt text](assets/week0/cruddur%20logical%20architectural%20diagram.png)
 
 
 
@@ -130,7 +130,7 @@ Screenshot:
 [Lucid chart link](https://lucid.app/lucidchart/036b7207-6f33-4805-b5d8-b7144ba6e3cb/edit?viewport_loc=-446%2C-220%2C2462%2C1359%2C0_0&invitationId=inv_70da2b67-dde4-4fe9-8390-c74c389abfe1)
 
 Screenshot:
-![Alt text](assets/aws-cicd-diagram.png)
+![Alt text](assets/week0/aws-cicd-diagram.png)
 
 Reference: [Complete CI/CD with AWS CodeCommit, AWS CodeBuild, AWS CodeDeploy, and AWS CodePipeline](https://aws.amazon.com/blogs/devops/complete-ci-cd-with-aws-codecommit-aws-codebuild-aws-codedeploy-and-aws-codepipeline/)
 
@@ -139,25 +139,25 @@ Reference: [Complete CI/CD with AWS CodeCommit, AWS CodeBuild, AWS CodeDeploy, a
 ### 2. Used EventBridge to hookup Health Dashboard to SNS and send notification when there is a service health issue.
 Summary of configuration:
 
-![Alt text](assets/eventbridge-service-health-sns.png)
+![Alt text](assets/week0/eventbridge-service-health-sns.png)
 <br>
 
 ### 3. Destroyed my root account credentials, Set MFA, IAM role
 - Destroyed iam admin account credentials by deactivating access key first, then delete:
   
   - Deactivate:
-  - ![Alt text](assets/root-access-key-deactivate.png)
+  - ![Alt text](assets/week0/root-access-key-deactivate.png)
   - Delete:
-  - ![Alt text](assets/root-access-key-delete.png)
+  - ![Alt text](assets/week0/root-access-key-delete.png)
 
 - Set MFA for added layer of security for the iam admin account
-  ![Alt text](assets/iam-mfa.png)
+  ![Alt text](assets/week0/iam-mfa.png)
 
 - Set IAM role to be used by IAM user or group
-  ![Alt text](assets/root-iam-role.png)
+  ![Alt text](assets/week0/root-iam-role.png)
 
 ### 4. Reviewed all the questions of each pillars in the Well Architected Tool (No specialized lens)
-[Link to Report](assets/Cruddur_wellarchitected.pdf)
+[Link to Report](assets/week0/Cruddur_wellarchitected.pdf)
 
 ### 5. Explored on how to open a support ticket and request a service limit
 I did not really opened a support ticket to request service limit, but just get familiarized on where to navigate for this.
@@ -165,7 +165,7 @@ I did not really opened a support ticket to request service limit, but just get 
 [Link to the site](https://support.console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase)
 
 Screenshot:
-![Alt text](assets/service-quota-increase-request.png)
+![Alt text](assets/week0/service-quota-increase-request.png)
 
 ### 6. Researched the technical and service limits of specific services and how they could impact the technical path for technical flexibility. 
 
@@ -174,4 +174,4 @@ I just looked for the document to include service quotas of all services.
 
 As far as the impact on technical path for technical flexibility, I'm not really sure at the moment.  But from the top of my head, it might be, for example, in the list below for "Attachments per VPC" which has a quota of 5. If the workload requires more, we'd have to design the architecture within that limit or else we'd request for an increase in the quota and justify to AWS.
 
-![Alt text](assets/service-limit-ec2.png)
+![Alt text](assets/week0/service-limit-ec2.png)
