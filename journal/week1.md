@@ -15,19 +15,19 @@ After following through the videos about "live stream", "OpenAI document", "Writ
 
 ### Frontend
 
-![Alt text](assets/docker-frontend-deploy.png)
+![Alt text](assets/week1/docker-frontend-deploy.png)
 
 
 ### Backend
 
-![Alt text](assets/docker-backend-deploy.png)
+![Alt text](assets/week1/docker-backend-deploy.png)
 
 <br>
 
 Below is a summary of steps I took to achieve the above final results:
 1. For frontend, I ensured to run `npm install` within the frontend-react-js so the frontend container needs to copy the contents of node_module folder. To automatically achieve this when gitpod is launched, I modified [gitpod.yml](../.gitpod.yml) to include below:
    
-   ![Alt text](assets/gitpod-frontend-npm-install.png)
+   ![Alt text](assets/week1/gitpod-frontend-npm-install.png)
 
 2. Created [Dockerfile](../frontend-react-js/Dockerfile) at frontend
 3. Created [Dockerfile](../backend-flask/Dockerfile) at backend
@@ -35,7 +35,7 @@ Below is a summary of steps I took to achieve the above final results:
 5. Create [docker-compose.yml](../docker-compose.yml) to orchestrate running the frontend and backend containers.
 6. Performed `compose up` over the docker-compose.yml file to start running the containers.
    
-    ![Alt text](assets/compose-up.png)
+    ![Alt text](assets/week1/compose-up.png)
 
     or run the code:
 
@@ -51,7 +51,7 @@ Below is a summary of steps I took to achieve the above final results:
 
 7. When the run was done, I ensured to make the ports are running successfully and make them public
    
-   ![Alt text](assets/ports-public.png)
+   ![Alt text](assets/week1/ports-public.png)
 
 8. Verified that both backend and frontend components are working.
 9. At backend, I appended `/api/activies/home` to the url and esure that a message in JSON format is returned.
@@ -127,7 +127,7 @@ Then, I followed the steps indicated in the [100 Days of Cloud](https://github.c
 
 ### Result screenshot:
 
-![Alt text](assets/gitpod-dynamodb-success.png)
+![Alt text](assets/week1/gitpod-dynamodb-success.png)
 
 
 <br>
@@ -166,7 +166,7 @@ and
 I was able to verify successful connection through:
 
 ### Database Explorer extension
-![Alt text](assets/gitpod-postgres-success.png)
+![Alt text](assets/week1/gitpod-postgres-success.png)
 
 ### CLI
 
@@ -178,8 +178,8 @@ psql -U postgres -h localhost
 
 Screenshots:
 
-![Alt text](assets/gitpod-postgres-cli.png)
-![Alt text](assets/gitpod-postgres-psql.png)
+![Alt text](assets/week1/gitpod-postgres-cli.png)
+![Alt text](assets/week1/gitpod-postgres-psql.png)
 
 <br>
 
@@ -187,13 +187,13 @@ Screenshots:
 
 ### Learned how to install Docker on my localmachine and get the same containers running outside of Gitpod / Codespaces
 I installed Docker Desktop for Mac
-![Alt text](assets/docker-local-install.png)
+![Alt text](assets/week1/docker-local-install.png)
 
 I ran the same Dockerfile as was with the live stream
-![Alt text](assets/docker-local-image.png)
+![Alt text](assets/week1/docker-local-image.png)
 
 c. However, I noticed a difference. In local, only 5 layers were processed until "COPY . ." command. The rest did not show up.
-![Alt text](assets/docker-build-local.png)
+![Alt text](assets/week1/docker-build-local.png)
 
 d. I was able to successfully deploy backend-flask app locally, using the command:
 
@@ -202,30 +202,31 @@ docker run --rm -p 4567:4567 -it -e FRONTEND_URL='*' -e BACKEND_URL='*' backend-
 ```
 
 Screenshot:
-![Alt text](assets/docker-deploy-local.png)
+
+![Alt text](assets/week1/docker-deploy-local.png)
 
 
 In the attempt to deploy the app locally, I created a :[docker-compose-local.yml](../docker-compose-local.yml)
 
 I experienced an issue with using https for both FRONTEND_URL and BACKEND_URL. I search workaround in the internet and the one that worked for me is to change https to http. Not secure but anyway, this is local.
 
-![Alt text](assets/docker-run-frontend-local-error.png)
+![Alt text](assets/week1/docker-run-frontend-local-error.png)
 
 
 After the https -> http fix, I was able to successfully deploy frontend app using docker-compose.yml file from localhost and implemented the notifications changes locally:
 
-![Alt text](assets/frontend-notifications-local.png)
+![Alt text](assets/week1/frontend-notifications-local.png)
 
 I also was able to successfully setup dynamodb and postgres:
 
 DynamoDB:
 
-![Alt text](assets/dynamodb-local.png)
+![Alt text](assets/week1/dynamodb-local.png)
 
 
 Postgres:
 
-![Alt text](assets/postgres-local.png)
+![Alt text](assets/week1/postgres-local.png)
 
 
 *** However, there were pre-requisites I needed to do:
@@ -235,7 +236,7 @@ Postgres:
 
 <br>
 
-### 2. Pushed and tagged a image to DockerHub (they have a free tier)
+### Pushed and tagged a image to DockerHub (they have a free tier)
 
 I used the following commands to push image to DockerHub:
 
@@ -246,11 +247,11 @@ docker push t0pz/aws-bootcamp-cruddur-2023-backend_flask:v1.0.0
 
 CLI terminal screenshot:
 
-![Alt text](assets/dockerhub-push-cli.png)
+![Alt text](assets/week1/dockerhub-push-cli.png)
 
 Dockerhub screenshot:
 
-![Alt text](assets/dockerhub-push-ui.png)
+![Alt text](assets/week1/dockerhub-push-ui.png)
 
 
 ### Implement a healthcheck in the V3 Docker compose file
@@ -268,12 +269,12 @@ I inserted the following command in [docker-compose.yml](../docker-compose.yml) 
 
 Screenshot:
 
-![Alt text](assets/docker-compose-healthcheck.png)
+![Alt text](assets/week1/docker-compose-healthcheck.png)
 
 
 To check health after `compose up` is run and all services up, I inspected the frontend container:
 
-![Alt text](assets/docker-compose-inspect-health.png)
+![Alt text](assets/week1/docker-compose-inspect-health.png)
 
 <br>
 
@@ -286,11 +287,11 @@ I tried to use just CLI for this challenge. The steps I did are:
          1. VPC ID [vpc-08f8bfea0b9921e41] - for the security group. 
          2. One Subnet ID [subnet-0880d493944aadd77] - to launch ec2 instance
 
-            ![Alt text](assets/challenge-ec2-vpc-subnet.png)
+            ![Alt text](assets/week1/challenge-ec2-vpc-subnet.png)
     
       2. AMI Id [ami-0dfcb1ef8550277af]
    
-            ![Alt text](assets/challenge-ec2-ami.png)
+            ![Alt text](assets/week1/challenge-ec2-ami.png)
 
 
       3. Security Group ID [sg-02212de69fc7a47fd] to attach to ec2 instance. I created a security group using the VPC ID above:
@@ -348,7 +349,7 @@ I tried to use just CLI for this challenge. The steps I did are:
 
     1. TO connect to the EC2 instance via SSH client, I followed steps #2, #3 and the example command in the screenshot below:
 
-        ![Alt text](assets/challenge-connect-to-instance.png)
+        ![Alt text](assets/week1/challenge-connect-to-instance.png)
 
 
         For #2, the location of the PEM file is the one indicated when creating SSH Key Pair.
@@ -365,7 +366,7 @@ I tried to use just CLI for this challenge. The steps I did are:
 
         Screenshot of successful access and successful installation of docker:
 
-        ![Alt text](assets/challenge-ec2-connect.png)
+        ![Alt text](assets/week1/challenge-ec2-connect.png)
 
     2. I pulled a sample public docker image
 
@@ -393,12 +394,12 @@ I tried to use just CLI for this challenge. The steps I did are:
 
     Screenshot of steps #2 to #5:
 
-    ![Alt text](assets/challenge-ec2-docker-commands.png)
+    ![Alt text](assets/week1/challenge-ec2-docker-commands.png)
 
 
     6. From AWS management console > EC2 instance, I navigated to the running instance and grabbed the Public IPv4 address:
 
-    ![Alt text](assets/challenge-console-public-ip.png)
+    ![Alt text](assets/week1/challenge-console-public-ip.png)
 
     To check whether the app is working through the EC2 instance, I appended '/name/[any texts]' to the Public IPv4 address. In my case:
 
@@ -408,6 +409,5 @@ I tried to use just CLI for this challenge. The steps I did are:
 
     Screenshot of result:
 
-    ![Alt text](assets/challenge-ec2-docker-output.png)
-
+    ![Alt text](assets/week1/challenge-ec2-docker-output.png)
 
