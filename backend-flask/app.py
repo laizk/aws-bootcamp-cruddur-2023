@@ -100,6 +100,7 @@ cors = CORS(
   methods="OPTIONS,GET,HEAD,POST"
 )
 
+# Cloudwatch logs ---------
 #@app.after_request
 #def after_request(response):
 #    timestamp = strftime('[%Y-%b-%d %H:%M]')
@@ -147,17 +148,20 @@ def data_create_message():
   return
 
 @app.route("/api/activities/home", methods=['GET'])
+@xray_recorder.capture('activities_home')
 def data_home():
   #data = HomeActivities.run(logger=LOGGER)
   data = HomeActivities.run()
   return data, 200
 
 @app.route("/api/activities/notifications", methods=['GET'])
+@xray_recorder.capture('activities_notifications')
 def data_notifications():
   data = NotificationsActivities.run()
   return data, 200
 
 @app.route("/api/activities/@<string:handle>", methods=['GET'])
+@xray_recorder.capture('activities_users')
 def data_handle(handle):
   model = UserActivities.run(handle)
   if model['errors'] is not None:
@@ -166,6 +170,7 @@ def data_handle(handle):
     return model['data'], 200
 
 @app.route("/api/activities/search", methods=['GET'])
+@xray_recorder.capture('activities_search')
 def data_search():
   term = request.args.get('term')
   model = SearchActivities.run(term)
