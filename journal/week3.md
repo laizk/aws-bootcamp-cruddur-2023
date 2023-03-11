@@ -464,5 +464,26 @@ With the above, I was able to log-in as an authenticated user and able to see th
 
 ![Alt text](assets/week3/week3-cognito-authenticated.png)
 
+## Improve UI contrast
 
+For the UI styling improvements, I have modified the contrast colors, specifically, the background to be darker, foreground to be lighter, input box fields border to be lighter to have more contrast against background, border-focus and background to be shade of gray in search and sign in pages.  I also set up them css variables of these changes for consistency.
 
+The css variables are in the `index.css` as this is the top of the styling elements structure and will be at the top when all `styling` components are merged into one. With this, the variables can be safely used to the rest of the css components.
+
+```css
+:root {
+  --bg: rgb(61,13,123);
+  --fg: rgb(8,1,14);
+
+  --field-border: rgba(149,0,255,0.29);
+  --field-border-focus: rgba(149,0,255,1);
+  --field-bg: rgba(31,31,31);
+}
+```
+
+The updated CSS files are:
+- `App.css` for the background
+- `ActivityItem.css` for the border color adjustment
+- `DesktopSidebar.css` for the footer font colors adjustment
+- `JoinSection.css` for the contrast adjustment of foreground
+- S`earch.css` and `SignPage.css` for the field border, border-focus and border-bg updates.
