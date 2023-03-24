@@ -7,6 +7,4 @@ else
     URL=$CONNECTION_URL
 fi 
 
-echo $URL
-
 psql $URL
