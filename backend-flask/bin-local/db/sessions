@@ -11,7 +11,7 @@ if [ "$1" = "prod" ]; then
 else
     URL=$CONNECTION_URL
 fi
-
+schema_path="$(realpath ..)/db/schema.sql"
 psql $URL cruddur < $schema_path
 
 NO_DB_URL=$(sed 's/\/cruddur//g' <<<"$URL")
